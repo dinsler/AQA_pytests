@@ -34,9 +34,6 @@ class BasePage:
     def _click_with_js_execute(self, locator):
         return self.driver.execute_script('arguments[0].click()', self._wait_until_element_located(locator))
 
-    def _get_with_js_execute(self, locator):
-        return self.driver.execute_script('arguments[0]', self._wait_until_element_located(locator))
-
     def _get_text(self, locator):
         element = self._wait_until_element_located(locator)
         return element.text

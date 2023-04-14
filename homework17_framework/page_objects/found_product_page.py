@@ -37,7 +37,7 @@ class FoundProductPage(BasePage):
         return self._get_text(self.__product_description)
 
     def click_buy_button(self):
-        self._click(self.__buy_button)
+        self._click_with_js_execute(self.__buy_button)
         return self
 
     def click_go_to_cart_button(self):
@@ -57,8 +57,7 @@ class FoundProductPage(BasePage):
         return self
 
     def is_two_units_of_product_selected_visible(self):
-        element = self._wait_until_element_visible(self.__two_units_of_product_selected)
-        return element.is_displayed
+        return self._is_visible(self.__two_units_of_product_selected)
 
     def click_add_to_wishlist_button(self):
         self._click_with_js_execute(self.__add_to_wishlist_button)
@@ -69,31 +68,28 @@ class FoundProductPage(BasePage):
         return self
 
     def is_product_in_wishlist_exist(self):
-        element = self._wait_until_element_located(self.__product_in_wishlist)
-        return element.is_displayed
+        return self._is_located(self.__product_in_wishlist)
 
     def select_three_units_of_product(self):
         self._click_with_js_execute(self.__select_three_units_of_product)
         return self
 
     def is_too_much_products_selected_error_message_displayed(self):
-        element = self._wait_until_element_visible(self.__too_much_products_selected_error_message)
-        return element.is_displayed
+        return self._is_visible(self.__too_much_products_selected_error_message)
 
     def click_delivery_time_expand_button(self):
         self._click_with_js_execute(self.__delivery_time_expand_button)
         return self
 
     def is_delivery_spot_visible(self):
-        element = self._wait_until_element_visible(self.__delivery_spot)
-        return element.is_displayed
+        return self._is_visible(self.__delivery_spot)
 
     def click_shipping_info_button(self):
         self._click_with_js_execute(self.__shipping_info_button)
         return self
 
     def is_delivery_price_list_visible(self):
-        return self._wait_until_element_visible(self.__delivery_price_list)
+        return self._is_visible(self.__delivery_price_list)
 
     def click_reviews_button(self):
         self._click_with_js_execute(self.__reviews_button)
@@ -120,8 +116,7 @@ class FoundProductPage(BasePage):
         return self
 
     def is_send_review_button_clickable(self):
-        return self._wait_until_to_be_clickable(self.__send_review_button)
+        return self._is_clickable(self.__send_review_button)
 
     def is_review_sent_message_displayed(self):
-        element = self._wait_until_element_visible(self.__review_sent_message)
-        return element.is_displayed
+        return self._is_visible(self.__review_sent_message)

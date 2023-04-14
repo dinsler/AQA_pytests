@@ -39,8 +39,7 @@ class MainPage(BasePage):
         return self
 
     def is_negative_search_result_message_displayed(self):
-        element = self._wait_until_element_visible(self.__negative_search_result_message)
-        return element.is_displayed
+        return self._is_visible(self.__negative_search_result_message)
 
     def click_search_item_button(self):
         self._click(self.__search_item_button)
@@ -64,16 +63,14 @@ class MainPage(BasePage):
         return self
 
     def is_gifts_list_exist(self):
-        element = self._wait_until_element_located(self.__gifts_list)
-        return element.is_displayed
+        return self._is_located(self.__gifts_list)
 
     def click_brands_button(self):
         self._click_with_js_execute(self.__brands_button)
         return self
 
     def is_brands_list_exist(self):
-        element = self._wait_until_element_located(self.__brands_list)
-        return element.is_displayed
+        return self._is_located(self.__brands_list)
 
     def click_beauty_blog_button(self):
         self._click_with_js_execute(self.__beauty_blog_button)
@@ -84,12 +81,11 @@ class MainPage(BasePage):
         return self
 
     def is_fashionable_look_advices_button_exist(self):
-        element = self._wait_until_element_located(self.__fashionable_look_advices_button)
-        return element.is_displayed
+        return self._is_located(self.__fashionable_look_advices_button)
 
     def set_newsletter_input(self, email: str):
         self._send_keys(locator=self.__newsletter_input, value=email)
         return self
 
     def is_female_button_clickable(self):
-        return self._wait_until_to_be_clickable(self.__female_button)
+        return self._is_clickable(self.__female_button)

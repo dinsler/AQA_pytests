@@ -19,8 +19,7 @@ class LoginPage(BasePage):
     __log_in_with_register_form_button = (By.XPATH, '//a[@class="register-link" and @href="/account/login"]')
 
     def is_login_form_visible(self):
-        element = self._wait_until_element_visible(self.__login_form)
-        return element.is_displayed
+        return self._is_visible(self.__login_form)
 
     def set_email(self, email: str):
         self._send_keys(locator=self.__email_input, value=email)
@@ -42,24 +41,21 @@ class LoginPage(BasePage):
         return self
 
     def is_validation_error_message_visible(self):
-        element = self._wait_until_element_visible(self.__validation_error_message)
-        return element.is_displayed
+        return self._is_visible(self.__validation_error_message)
 
     def click_forgot_password_button(self):
         self._click(self.__forgot_password_button)
         return self
 
     def is_reset_password_form_exist(self):
-        element = self._wait_until_element_located(self.__reset_password_form)
-        return element.is_displayed
+        return self._is_located(self.__reset_password_form)
 
     def click_register_link(self):
         self._click(self.__register_link)
         return self
 
     def is_register_form_visible(self):
-        element = self._wait_until_element_visible(self.__register_form)
-        return element.is_displayed
+        return self._is_visible(self.__register_form)
 
     def click_log_in_with_register_form_button(self):
         self._click_with_js_execute(self.__log_in_with_register_form_button)

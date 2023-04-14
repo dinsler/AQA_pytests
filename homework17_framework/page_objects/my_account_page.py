@@ -18,40 +18,35 @@ class MyAccountPage(BasePage):
     __complaints_status_message = (By.XPATH, '//h2[text()="Досі ви не подали жодної рекламації"]')
 
     def is_logout_button_exist(self):
-        element = self._wait_until_element_located(self.__logout_button)
-        return element.is_displayed
+        return self._is_located(self.__logout_button)
 
     def click_my_contact_data_button(self):
         self._click(self.__my_contact_data_button)
         return self
 
     def is_address_data_exist(self):
-        element = self._wait_until_element_located(self.__address_data_form)
-        return element.is_displayed
+        return self._is_located(self.__address_data_form)
 
     def click_my_orders_button(self):
         self._click(self.__my_orders_button)
         return self
 
     def is_orders_status_message_visible(self):
-        element = self._wait_until_element_visible(self.__orders_status_message)
-        return element.is_displayed
+        return self._is_visible(self.__orders_status_message)
 
     def click_my_purchased_products_button(self):
         self._click(self.__my_purchased_products_button)
         return self
 
     def is_purchased_products_status_message_visible(self):
-        element = self._wait_until_element_visible(self.__purchased_products_status_message)
-        return element.is_displayed
+        return self._is_visible(self.__purchased_products_status_message)
 
     def click_my_complaints_button(self):
         self._click(self.__my_complaints_button)
         return self
 
     def is_complaints_status_message_visible(self):
-        element = self._wait_until_element_visible(self.__complaints_status_message)
-        return element.is_displayed
+        return self._is_visible(self.__complaints_status_message)
 
     def click_logout_button(self):
         self._click(self.__logout_button)
@@ -62,4 +57,4 @@ class MyAccountPage(BasePage):
         return self
 
     def is_my_contact_data_button_invisible(self):
-        return self._wait_until_element_invisible(self.__my_contact_data_button)
+        return self._is_invisible(self.__my_contact_data_button)

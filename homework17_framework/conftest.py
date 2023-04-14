@@ -1,17 +1,33 @@
 import pytest
+import json
+
+from homework17_framework.constans import ROOT_DIR
 from homework17_framework.page_objects.main_page import MainPage
-from homework17_framework.utilities.config_reader import get_application_url, get_browser_id, get_user_creds,\
-    get_search_item
+
+from homework17_framework.utilities.configuration import Configuration
 from homework17_framework.utilities.driver_factory import driver_factory
 
 
+@pytest.fixture(scope='session', autouse=True)
+def env():
+    with open(f'{ROOT_DIR}/configurations/config.json', 'r') as file:
+        res = file.read()
+        config = json.loads(res)
+        return Configuration(**config)
+
+
 @pytest.fixture()
-def create_browser():
-    driver = driver_factory(get_browser_id())
+def create_browser(env):
+    driver = driver_factory(int(env.browser_id))
     driver.maximize_window()
-    driver.get(get_application_url())
+    driver.get(env.app_url)
     yield driver
     driver.quit()
+
+
+def pytest_addoption(parser):
+    parser.addoption('--browser_id', action='store', default=1, help='Set browser id')
+    parser.addoption('--env', action='store', help='Env')
 
 
 @pytest.fixture()
@@ -25,13 +41,13 @@ def open_login_page(open_main_page):
 
 
 @pytest.fixture()
-def open_my_account_page(open_login_page):
-    return open_login_page.login(get_user_creds()[0], get_user_creds()[1])
+def open_my_account_page(open_login_page, env):
+    return open_login_page.login(env.email, env.password)
 
 
 @pytest.fixture()
-def open_found_product_page(open_main_page):
-    return open_main_page.found_product(get_search_item()[0])
+def open_found_product_page(open_main_page, env):
+    return open_main_page.found_product(env.search_item)
 
 
 @pytest.fixture()

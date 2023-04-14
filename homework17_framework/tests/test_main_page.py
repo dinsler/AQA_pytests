@@ -1,5 +1,4 @@
 import pytest
-from homework17_framework.utilities.config_reader import get_search_item, get_user_creds
 
 
 @pytest.mark.smoke
@@ -10,18 +9,18 @@ def test_open_login_page(open_main_page):
 
 
 @pytest.mark.smoke
-def test_open_found_product_page(open_main_page):
+def test_open_found_product_page(open_main_page, env):
     main_page = open_main_page
-    found_product_page = main_page.set_search_input(get_search_item()[0]).click_search_item_button().\
+    found_product_page = main_page.set_search_input(env.search_item).click_search_item_button().\
         click_search_result_button()
     actual_text = found_product_page.get_product_description_text()
     assert actual_text == 'Опис', 'Found product page was not opened'
 
 
 @pytest.mark.smoke
-def test_is_negative_search_result_message_displayed(open_main_page):
+def test_is_negative_search_result_message_displayed(open_main_page, env):
     main_page = open_main_page
-    negative_search = main_page.set_search_input(get_search_item()[1]).click_search_icon()
+    negative_search = main_page.set_search_input(env.invalid_search_item).click_search_icon()
     assert negative_search.is_negative_search_result_message_displayed(), 'Negative search result was not displayed'
 
 
@@ -47,7 +46,7 @@ def test_open_get_the_look_page(open_main_page):
 
 
 @pytest.mark.smoke
-def test_is_female_button_clickable(open_main_page):
+def test_is_female_button_clickable(open_main_page, env):
     main_page = open_main_page
-    newsletter = main_page.set_newsletter_input(get_user_creds()[0])
+    newsletter = main_page.set_newsletter_input(env.email)
     assert newsletter.is_female_button_clickable(), 'Female button is not clickable'

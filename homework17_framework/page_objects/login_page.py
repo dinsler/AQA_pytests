@@ -36,8 +36,16 @@ class LoginPage(BasePage):
         self.set_email(email).set_password(password).click_log_in_button()
         return MyAccountPage(self.driver)
 
-    def click_login_button_with_invalid_user_data(self):
-        self._click(self.__log_in_button)
+    def set_invalid_email(self, invalid_email: str):
+        self._send_keys(locator=self.__email_input, value=invalid_email)
+        return self
+
+    def set_invalid_password(self, invalid_password: str):
+        self._send_keys(locator=self.__password_input, value=invalid_password)
+        return self
+
+    def click_login_button_with_invalid_user_data(self, invalid_email: str, invalid_password: str):
+        self.set_invalid_password(invalid_email).set_invalid_password(invalid_password).click_log_in_button()
         return self
 
     def is_validation_error_message_visible(self):

@@ -1,5 +1,4 @@
 import pytest
-from homework17_framework.utilities.config_reader import get_review_data
 
 
 @pytest.mark.smoke
@@ -56,17 +55,17 @@ def test_shipping_info_button(open_found_product_page):
 
 
 @pytest.mark.regression
-def test_send_review(open_found_product_page):
+def test_send_review(open_found_product_page, env):
     found_product_page = open_found_product_page
     add_new_review = found_product_page.click_reviews_button().click_add_new_review_button().\
-        click_five_star_review_button().set_reviewer_name_input(get_review_data()[0]).click_send_review_button()
+        click_five_star_review_button().set_reviewer_name_input(env.username).click_send_review_button()
     assert add_new_review.is_review_sent_message_displayed(), 'Review was not sent'
 
 
 @pytest.mark.regression
 @pytest.mark.xfail
-def test_sent__review_with_invalid_reviewer_name_input(open_found_product_page):
+def test_sent__review_with_invalid_reviewer_name_input(open_found_product_page, env):
     found_product_page = open_found_product_page
     add_new_review = found_product_page.click_reviews_button().click_add_new_review_button(). \
-        click_five_star_review_button().set_reviewer_name_input(get_review_data()[1])
+        click_five_star_review_button().set_reviewer_name_input(env.invalid_username)
     assert not add_new_review.is_send_review_button_clickable(), 'Reviewer name input should be valid'

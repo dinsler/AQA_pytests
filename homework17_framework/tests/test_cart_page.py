@@ -1,5 +1,4 @@
 import pytest
-from homework17_framework.utilities.config_reader import get_invalid_discount_code
 
 
 @pytest.mark.smoke
@@ -10,9 +9,9 @@ def test_remove_product_from_cart_button(open_cart_page):
 
 
 @pytest.mark.smoke
-def test_is_input_error_message_displayed(open_cart_page):
+def test_is_input_error_message_displayed(open_cart_page, env):
     cart_page = open_cart_page
-    error_message = cart_page.set_discount_code_input(get_invalid_discount_code()).\
+    error_message = cart_page.set_discount_code_input(env.invalid_discount).\
         click_submit_discount_code_button()
     assert error_message.is_input_error_message_displayed(), 'Input error message was not displayed'
 

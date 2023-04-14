@@ -64,7 +64,7 @@ class FoundProductPage(BasePage):
         return self
 
     def click_wishlist_button(self):
-        self._click_with_js_execute(self.__wishlist_button)
+        self._click_selected(self.__wishlist_button)
         return self
 
     def is_product_in_wishlist_exist(self):

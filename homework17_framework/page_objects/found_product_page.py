@@ -1,9 +1,11 @@
 from selenium.webdriver.common.by import By
 
 from homework17_framework.page_objects.cart_page import CartPage
+from homework17_framework.utilities.decorators import allure_step
 from homework17_framework.utilities.web_ui.base_page import BasePage
 
 
+@allure_step
 class FoundProductPage(BasePage):
     def __init__(self, driver):
         super().__init__(driver)
@@ -49,7 +51,7 @@ class FoundProductPage(BasePage):
         return self
 
     def click_quantity_dropdown(self):
-        self._click(self.__quantity_dropdown)
+        self._click_selected(self.__quantity_dropdown)
         return self
 
     def select_two_units_of_product(self):

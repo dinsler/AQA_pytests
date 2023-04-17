@@ -1,3 +1,5 @@
+from contextlib import suppress
+import allure
 import pytest
 import json
 
@@ -16,12 +18,25 @@ def env():
         return Configuration(**config)
 
 
+@pytest.hookimpl(hookwrapper=True, tryfirst=True)
+def pytest_runtest_makereport(item, call):
+    outcome = yield
+    rep = outcome.get_result()
+    setattr(item, "rep_" + rep.when, rep)
+    return rep
+
+
 @pytest.fixture()
-def create_browser(env):
+def create_browser(env, request):
     driver = driver_factory(int(env.browser_id))
     driver.maximize_window()
     driver.get(env.app_url)
     yield driver
+    if request.node.rep_call.failed:
+        with suppress(Exception):
+            allure.attach(driver.get_screenshot_as_png(),
+                          name=request.function.__name__,
+                          attachment_type=allure.attachment_type.PNG)
     driver.quit()
 
 

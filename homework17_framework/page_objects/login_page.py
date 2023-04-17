@@ -1,8 +1,10 @@
 from selenium.webdriver.common.by import By
 from homework17_framework.page_objects.my_account_page import MyAccountPage
+from homework17_framework.utilities.decorators import allure_step
 from homework17_framework.utilities.web_ui.base_page import BasePage
 
 
+@allure_step
 class LoginPage(BasePage):
     def __init__(self, driver):
         super().__init__(driver)

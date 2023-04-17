@@ -1,7 +1,9 @@
+from homework17_framework.utilities.decorators import allure_step
 from homework17_framework.utilities.web_ui.base_page import BasePage
 from selenium.webdriver.common.by import By
 
 
+@allure_step
 class MyAccountPage(BasePage):
     def __init__(self, driver):
         super().__init__(driver)

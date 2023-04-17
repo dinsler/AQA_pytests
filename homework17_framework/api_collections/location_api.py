@@ -1,7 +1,9 @@
 from homework17_framework.data_objects.location_data import LocationData
 from homework17_framework.utilities.api.base_api import BaseAPI
+from homework17_framework.utilities.decorators import allure_step
 
 
+@allure_step
 class LocationAPI(BaseAPI):
     def __init__(self, env):
         super().__init__(env)

@@ -1,9 +1,11 @@
 from selenium.webdriver.common.by import By
 from homework17_framework.page_objects.found_product_page import FoundProductPage
 from homework17_framework.page_objects.login_page import LoginPage
+from homework17_framework.utilities.decorators import allure_step
 from homework17_framework.utilities.web_ui.base_page import BasePage
 
 
+@allure_step
 class MainPage(BasePage):
     def __init__(self, driver):
         super().__init__(driver)

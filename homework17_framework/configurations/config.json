@@ -9,5 +9,6 @@
   "invalid_search_item": "__________________",
   "username": "Margarita",
   "invalid_username": "_________________=/",
-  "invalid_discount": "jnzldfj"
+  "invalid_discount": "jnzldfj",
+  "base_api_url": " https://rickandmortyapi.com/api"
 }

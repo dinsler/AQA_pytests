@@ -1,9 +1,12 @@
 from http import HTTPStatus
 
+import pytest
+
 from homework17_framework.api_collections.location_api import LocationAPI
 from homework17_framework.data_objects.location_data import LocationData
 
 
+@pytest.mark.smoke
 def test_get_location(env, location_mock):
     expected_location = location_mock
     response = LocationAPI(env).get_location(1)
@@ -13,6 +16,7 @@ def test_get_location(env, location_mock):
     assert actual_location == expected_location, 'Character Data is not as expected'
 
 
+@pytest.mark.smoke
 def test_get_non_existent_location(env):
     response = LocationAPI(env).get_location(1123)
     assert response.status_code == HTTPStatus.NOT_FOUND, 'Status code is not as expected'

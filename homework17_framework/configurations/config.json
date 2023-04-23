@@ -10,7 +10,5 @@
   "username": "Margarita",
   "invalid_username": "_________________=/",
   "invalid_discount": "jnzldfj",
-  "base_api_url": " https://rickandmortyapi.com/api",
-  "action_movie_dict": {"name": "Avengers:Endgame", "year": 2019},
-  "action_movie_list": [{"name": "The Bourne Ultimatum", "year": 2007}, {"name": "Gladiator", "year": 2000}, {"name": "The Dark Knight", "year": 2008}]
+  "base_api_url": " https://rickandmortyapi.com/api"
 }

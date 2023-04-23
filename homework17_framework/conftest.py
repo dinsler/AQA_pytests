@@ -4,16 +4,10 @@ import pytest
 import json
 
 from homework17_framework.constans import ROOT_DIR
-from homework17_framework.mongo_db_repository.action_movies_collection import ActionMovies
 from homework17_framework.page_objects.main_page import MainPage
 
 from homework17_framework.utilities.configuration import Configuration
 from homework17_framework.utilities.driver_factory import driver_factory
-
-
-@pytest.fixture()
-def get_action_movies_col():
-    return ActionMovies.get_collection()
 
 
 @pytest.fixture(scope='session', autouse=True)

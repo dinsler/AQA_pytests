@@ -1,0 +1,17 @@
+{
+  "PlayStation": {
+    "price": 933.33
+  },
+  "Xbox": {
+    "price": 778
+  },
+  "Nintendo": {
+    "price": 555.5
+  },
+  "Sega": {
+    "price": 23.58
+  },
+  "Dendy": {
+    "price": 73.61
+  }
+}

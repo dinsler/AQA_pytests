@@ -1,0 +1,17 @@
+{
+  "PlayStation": {
+    "quantity": 45
+  },
+  "Xbox": {
+    "quantity": 62
+  },
+  "Nintendo": {
+    "quantity": 432
+  },
+  "Sega": {
+    "quantity": 10
+  },
+  "Dendy": {
+    "quantity": 3
+  }
+}

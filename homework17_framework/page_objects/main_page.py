@@ -1,4 +1,5 @@
 from selenium.webdriver.common.by import By
+
 from homework17_framework.page_objects.found_product_page import FoundProductPage
 from homework17_framework.page_objects.login_page import LoginPage
 from homework17_framework.utilities.decorators import allure_step
@@ -12,13 +13,13 @@ class MainPage(BasePage):
 
     __login_button = (By.XPATH, '//*[@title="Мій акаунт"]/parent::a[@href="/mynotino/"]')
     __search_input = (By.XPATH, '//input[@type="search"]')
-    __search_item_button = (By.XPATH, '//a[text()="Cabernet"]')
+    __search_item_button = (By.XPATH, '//*[@href="https://www.notino.ua/kringle-candle/'
+                                      'vineyard-cabernet-aromatichna-svichka/"]')
     __search_icon = (By.XPATH, '//a[@data-testid="search-icon"]')
-    __search_result_button = (By.XPATH, '//a[@class="sc-dwnOUR kJtUCt"]')
     __cart_button = (By.XPATH, '//a[@href="/cart/"]')
-    __negative_search_result_message = (By.XPATH, '//div[@class="ca-box"]/p[@class="center"]')
+    __negative_search_result_message = (By.XPATH, '//p[@class="styled__SearchNoResultsText-sc-14y14oz-4 CsDMr"]')
     __actions_button = (By.XPATH, '//a[@href="/aktsiyi/" and @aria-haspopup="true"]')
-    __free_gifts_button = (By.XPATH, '//div[@class="category"]/a[@href="/aktualni-akciji/"]')
+    __free_gifts_button = (By.XPATH, '//a[@href="/aktualni-akciji/" and @class="styled__Category-sc-lh232m-0 buJOdN"]')
     __gifts_list = (By.XPATH, '//*[@id="col-content"]')
     __brands_button = (By.XPATH, '//a[@href="/kosmetychni-brendy/"]')
     __brands_list = (By.XPATH, '//div[@class="crossroad-brands"]')
@@ -44,16 +45,11 @@ class MainPage(BasePage):
         return self._is_visible(self.__negative_search_result_message)
 
     def click_search_item_button(self):
-        self._click(self.__search_item_button)
-        return self
-
-    def click_search_result_button(self):
-        self._click(self.__search_result_button)
+        self._click_with_js_execute(self.__search_item_button)
         return FoundProductPage(self.driver)
 
     def found_product(self, search_item: str):
-        self.set_search_input(search_item).click_search_item_button().\
-            click_search_result_button()
+        self.set_search_input(search_item).click_search_item_button()
         return FoundProductPage(self.driver)
 
     def click_actions_button(self):

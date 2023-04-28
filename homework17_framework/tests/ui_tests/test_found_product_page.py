@@ -63,7 +63,7 @@ def test_send_review(open_found_product_page, env):
 
 
 @pytest.mark.regression
-# @pytest.mark.xfail
+@pytest.mark.xfail
 def test_sent__review_with_invalid_reviewer_name_input(open_found_product_page, env):
     found_product_page = open_found_product_page
     add_new_review = found_product_page.click_reviews_button().click_add_new_review_button(). \

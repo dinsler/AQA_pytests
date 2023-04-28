@@ -14,6 +14,11 @@ def driver_factory(driver_id: int):
         options = ChromeOptions()
         options.add_argument("--incognito")
         options.add_argument("--disable-site-isolation-trials")
+        options.add_argument("--headless")
+        options.add_argument("--no-sandbox")
+        options.add_argument("--user-agent=Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) "
+                             "AppleWebKit/537.36 (KHTML, like Gecko) Chrome/112.0.0.0 Safari/537.36")
+        options.add_argument("--window-size=1440, 900")
         return Chrome(chrome_options=options, service=chrome_service(ChromeDriverManager().install()))
     elif int(driver_id) == __FIRE_FOX:
         return Firefox(service=firefox_service(GeckoDriverManager().install()))

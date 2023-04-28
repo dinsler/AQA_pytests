@@ -11,8 +11,7 @@ def test_open_login_page(open_main_page):
 @pytest.mark.smoke
 def test_open_found_product_page(open_main_page, env):
     main_page = open_main_page
-    found_product_page = main_page.set_search_input(env.search_item).click_search_item_button().\
-        click_search_result_button()
+    found_product_page = main_page.set_search_input(env.search_item).click_search_item_button()
     actual_text = found_product_page.get_product_description_text()
     assert actual_text == 'Опис', 'Found product page was not opened'
 
@@ -21,9 +20,7 @@ def test_open_found_product_page(open_main_page, env):
 def test_is_negative_search_result_message_displayed(open_main_page, env):
     main_page = open_main_page
     negative_search = main_page.set_search_input(env.invalid_search_item).click_search_icon()
-    # assert negative_search.is_negative_search_result_message_displayed(), 'Negative search result was not displayed'
-    # assert above is correct, assert below is made to show an example of a failed test
-    assert not negative_search.is_negative_search_result_message_displayed(), 'Negative search result was displayed'
+    assert negative_search.is_negative_search_result_message_displayed(), 'Negative search result was not displayed'
 
 
 @pytest.mark.regression
